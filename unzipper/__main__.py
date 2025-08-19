@@ -1,38 +1,18 @@
-# ===================================================================== #
-#                      Copyright (c) 2022 Itz-fork                      #
-#                                                                       #
-# This program is distributed in the hope that it will be useful,       #
-# but WITHOUT ANY WARRANTY; without even the implied warranty of        #
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                  #
-# See the GNU General Public License for more details.                  #
-#                                                                       #
-# You should have received a copy of the GNU General Public License     #
-# along with this program. If not, see <http://www.gnu.org/licenses/>   #
-# ===================================================================== #
-
 import logging
-from pyrogram import idle
-from os import makedirs, path
-from config import Config
+from pyromod import listen
+from .client import UnzipperBot
+from .client.caching import update_cache
 
+# Logging stuff
+logging.getLogger().setLevel(logging.INFO)
+logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-if __name__ == "__main__":
-    logging.info(" >> Checking download location...")
-    if not path.isdir(Config.DOWNLOAD_LOCATION):
-        makedirs(Config.DOWNLOAD_LOCATION)
+# Update cache (can stay here as it doesn’t depend on unzip_client)
+update_cache()
 
-    logging.info(" >> Applying custom methods...")
-    from .client import init_patch
-    init_patch()
+# Remove the unzip_client instantiation here
+# It will be handled in main.py instead
 
-    logging.info(" >> Starting client...")
-    from unzipper import unzip_client
-    from unzipper.modules import *
-    unzip_client.start()
-
-    logging.info(" >> Checking Log Channel...")
-    from .helpers_nexa.checks import check_log_channel
-    check_log_channel()
-
-    logging.info("Bot is active Now! Join @NexaBotsUpdates")
-    idle()
+# Buttons
+from .helpers_nexa.buttons import Unzipper_Buttons
+Buttons = Unzipper_Buttons()
