@@ -1,15 +1,3 @@
-# ===================================================================== #
-#                      Copyright (c) 2022 Itz-fork                      #
-#                                                                       #
-# This program is distributed in the hope that it will be useful,       #
-# but WITHOUT ANY WARRANTY; without even the implied warranty of        #
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                  #
-# See the GNU General Public License for more details.                  #
-#                                                                       #
-# You should have received a copy of the GNU General Public License     #
-# along with this program. If not, see <http://www.gnu.org/licenses/>   #
-# ===================================================================== #
-
 import logging
 from pyromod import listen
 from .client import UnzipperBot
@@ -19,12 +7,11 @@ from .client.caching import update_cache
 logging.getLogger().setLevel(logging.INFO)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-# Update cache
+# Update cache (can stay here as it doesn’t depend on unzip_client)
 update_cache()
 
-# CLient
-unzip_client = UnzipperBot()
-
+# Remove the unzip_client instantiation here
+# It will be handled in main.py instead
 
 # Buttons
 from .helpers_nexa.buttons import Unzipper_Buttons
