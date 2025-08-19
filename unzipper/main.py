@@ -2,7 +2,8 @@ import logging
 from pyrogram import idle
 from os import makedirs, path
 from config import Config
-from unzipper.client import UnzipperBot  # Import the class directly
+from unzipper.client import UnzipperBot
+from unzipper.helpers_nexa.buttons import Unzipper_Buttons  # Import the class directly
 
 if __name__ == "__main__":
     logging.info(" >> Checking download location...")
@@ -14,13 +15,16 @@ if __name__ == "__main__":
     init_patch()
 
     logging.info(" >> Starting client...")
-    unzip_client = UnzipperBot()  # Create the instance here
+    unzip_client = UnzipperBot()
     from unzipper.modules import *  # Import modules after client is created
     unzip_client.start()
 
     logging.info(" >> Checking Log Channel...")
     from .helpers_nexa.checks import check_log_channel
     check_log_channel()
+
+    # Define Buttons here after everything is set up
+    Buttons = Unzipper_Buttons()
 
     logging.info("Bot is active Now! Join @NexaBotsUpdates")
     idle()
