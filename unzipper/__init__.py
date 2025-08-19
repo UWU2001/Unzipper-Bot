@@ -10,5 +10,5 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 # Update cache
 update_cache()
 
-# Remove Buttons instantiation here
-# It will be handled in main.py instead
+# Remove Buttons instantiation
+# It will be handled in main.py
